@@ -55,9 +55,9 @@ Let's retrieve access token
 ```php5
 Route::get("process_oauth_result",function(\Illuminate\Http\Request $request)
 {
-    $accesToken = Bigcommerce::getAccessToken($request->code, $request->scope, $request->context));
+    $response = Bigcommerce::getAccessToken($request->code, $request->scope, $request->context));
 
-    dd($accessToken);
+    dd($response);
 });
 ```
 
