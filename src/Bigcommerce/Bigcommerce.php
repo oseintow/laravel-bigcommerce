@@ -21,7 +21,7 @@ class Bigcommerce
     protected $authServiceUrl= "https://login.bigcommerce.com/";
     protected $baseApiUrl  =  "https://api.bigcommerce.com/";
     protected $redirectUrl;
-    protected $resourceURI;
+    protected $resourceUri;
 
     public function __construct($connection)
     {
@@ -136,7 +136,7 @@ class Bigcommerce
     {
         try {
 
-            $data = $this->bigcommerce->$httpVerb($this->resourceURI($resource), $filters);
+            $data = $this->bigcommerce->$httpVerb($this->resourceUri($resource), $filters);
 
             if ($this->bigcommerce->getHeader("X-Retry-After")) {
                 if ($this->bigcommerce->getHeader("X-Retry-After") > 0) {
@@ -173,10 +173,10 @@ class Bigcommerce
         }
     }
 
-    public function resourceURI($resource){
-        $this->resourceURI = $this->baseApiUrl . $this->storeHash . "/{$this->version}/" . $resource;
+    public function resourceUri($resource){
+        $this->resourceUri = $this->baseApiUrl . $this->storeHash . "/{$this->version}/" . $resource;
 
-        return $this->resourceURI;
+        return $this->resourceUri;
     }
 
     public function getStatus()
