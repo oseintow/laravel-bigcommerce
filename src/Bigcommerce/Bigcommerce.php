@@ -69,7 +69,8 @@ class Bigcommerce
      */
     public function setStoreHash(string $storeHash)
     {
-        $this->storeHash = $storeHash;
+        $storeHash = explode("/", $storeHash);
+        $this->storeHash = $storeHash[count($storeHash) - 1];
 
         return $this;
     }
@@ -131,39 +132,6 @@ class Bigcommerce
         return $this->makeBigcomerceResourceRequest($method, $args);
     }
 
-    public function makeBigcomerceResourceRequest($method, $args)
-    {
-        try {
-//            $data = null;
-//            if(count($args) == 2)
-//                $data = $this->bigcommerce->$method($args[0], $args[1]);
-//            elseif(count($args) == 1)
-//                $data = $this->bigcommerce->$method($args[0]);
-//            else
-//                $data = $this->bigcommerce->$method();
-
-            if($this->connection == "oAuth"){
-                BigcommerceClientResource::configure(array(
-                    'client_id' => $this->clientId,
-                    'auth_token' => $this->accessToken,
-                    'store_hash' => $this->storeHash
-                ));
-            }
-
-            $data = call_user_func_array([BigcommerceClientResource::class, $method], $args);
-
-            return collect($data);
-        }catch(Exception $e){
-            throw new BigcommerceApiException($e->getMessage(), $e->getCode());
-        }
-    }
-
-    public function resourceURI($resource){
-        $this->resourceURI = $this->baseApiUrl . $this->storeHash . "/{$this->version}/" . $resource;
-
-        return $this->resourceURI;
-    }
-
     public function makeHttpVerbRequest($httpVerb, $resource, $filters = null)
     {
         try {
@@ -178,11 +146,37 @@ class Bigcommerce
                 }
             }
 
-            return collect($data);
+            return $this->version== "v2" ?
+                collect($data) : collect($data)->map(function($value) { return collect($value); });
 
         }catch(Exception $e){
             throw new BigcommerceApiException($e->getMessage(), $e->getCode());
         }
+    }
+
+    public function makeBigcomerceResourceRequest($method, $args)
+    {
+        try {
+            if($this->connection == "oAuth"){
+                BigcommerceClientResource::configure(array(
+                    'client_id' => $this->clientId,
+                    'auth_token' => $this->accessToken,
+                    'store_hash' => $this->storeHash
+                ));
+            }
+
+            $data = call_user_func_array([BigcommerceClientResource::class,$method], $args);
+
+            return collect($data);
+        }catch(Exception $e){
+            throw new BigcommerceApiException($e->getMessage(), $e->getCode());
+        }
+    }
+
+    public function resourceURI($resource){
+        $this->resourceURI = $this->baseApiUrl . $this->storeHash . "/{$this->version}/" . $resource;
+
+        return $this->resourceURI;
     }
 
     public function getStatus()
