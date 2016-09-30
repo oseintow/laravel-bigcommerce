@@ -36,7 +36,15 @@ Laravel Bigcommerce requires connection configuration. You will need to publish 
 
     php artisan vendor:publish
 
-This will create a bigcommerce.php file in the config directory. You will need to set your **API_KEY** and **SECRET**
+This will create a bigcommerce.php file in the config directory. You will need to set your **auth** keys
+
+###BasicAuth
+
+You will need to set **API_KEY** , **USERNAME** AND **STORE URL**
+
+###OAUTH
+
+You will need to set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
 
 ##Usage
 
@@ -47,8 +55,7 @@ Let's retrieve access token
 ```php5
 Route::get("process_oauth_result",function(\Illuminate\Http\Request $request)
 {
-    $storeHash = "csewsa";
-    $accesToken = Bigcommerce::setStoreHash($storeHash)->getAccessToken($request->code, $request->scope, $request->context));
+    $accesToken = Bigcommerce::getAccessToken($request->code, $request->scope, $request->context));
 
     dd($accessToken);
 });

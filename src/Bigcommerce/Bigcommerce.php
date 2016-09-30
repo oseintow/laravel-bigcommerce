@@ -22,7 +22,6 @@ class Bigcommerce
     protected $baseApiURL  =  "https://api.bigcommerce.com/";
     protected $redirectUrl;
     protected $resourceURI;
-    protected $cipher = 'AES256-SHA';
 
     public function __construct($connection)
     {
@@ -47,26 +46,22 @@ class Bigcommerce
         return $this;
     }
 
-    private function oAuth(){
+    private function oAuth()
+    {
         $this->bigcommerce = new BigcommerceClient();
-        $this->bigcommerce->setCipher($this->cipher);
         $this->clientId = Config::get('bigcommerce.'.$this->connection.'.client_id');
         $this->clientSecret = Config::get('bigcommerce.'.$this->connection.'.client_secret');
         $this->redirectUrl = Config::get('bigcommerce.'.$this->connection.'.redirect_url');
         $this->bigcommerce->addHeader("X-Auth-Client", $this->clientId );
     }
 
-    private function basicAuth(){
+    private function basicAuth()
+    {
         BigcommerceClientResource::configure(array(
             'store_url' => Config::get('bigcommerce.'.$this->connection.'.store_url'),
             'username'  => Config::get('bigcommerce.'.$this->connection.'.username'),
             'api_key'   => Config::get('bigcommerce.'.$this->connection.'.api_key')
         ));
-    }
-
-    public function setCipher($cipher){
-        $this->cipher = $cipher;
-        $this->bigcommerce->setCipher($this->cipher);
     }
 
     /*
@@ -79,8 +74,11 @@ class Bigcommerce
         return $this;
     }
 
-    public function setApiVersion($version){
+    public function setApiVersion($version)
+    {
         $this->version = $version;
+
+        return $this;
     }
 
     public function getAccessToken($code, $scope, $context)
@@ -113,6 +111,11 @@ class Bigcommerce
         $this->bigcommerce->addHeader($key, $value);
 
         return $this;
+    }
+
+     public function removeHeader($header)
+    {
+        $this->bigcommerce->remove($header);
     }
 
     /*
