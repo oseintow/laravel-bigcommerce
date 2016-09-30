@@ -40,7 +40,7 @@ This will create a bigcommerce.php file in the config directory. You will need t
 
 ##Usage
 
-Will Fill Later
+Will Fill Later.
 
 Let's retrieve access token
 
