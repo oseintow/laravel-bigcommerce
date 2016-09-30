@@ -19,7 +19,7 @@ class Bigcommerce
     protected $connection;
     protected $version = "v3";
     protected $authServiceUrl= "https://login.bigcommerce.com/";
-    protected $baseApiURL  =  "https://api.bigcommerce.com/";
+    protected $baseApiUrl  =  "https://api.bigcommerce.com/";
     protected $redirectUrl;
     protected $resourceURI;
 
