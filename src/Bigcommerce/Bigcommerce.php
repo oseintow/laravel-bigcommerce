@@ -96,7 +96,7 @@ class Bigcommerce
                 "context" => $context
             ]);
 
-        return $response->access_token;
+        return $response;
     }
 
     public function setAccessToken($accessToken)
@@ -105,18 +105,6 @@ class Bigcommerce
         $this->bigcommerce->addHeader("X-Auth-Token", $accessToken);
 
         return $this;
-    }
-
-    public function addHeader($key, $value)
-    {
-        $this->bigcommerce->addHeader($key, $value);
-
-        return $this;
-    }
-
-     public function removeHeader($header)
-    {
-        $this->bigcommerce->remove($header);
     }
 
     /*
@@ -174,9 +162,21 @@ class Bigcommerce
     }
 
     public function resourceUri($resource){
-        $this->resourceUri = $this->baseApiUrl . $this->storeHash . "/{$this->version}/" . $resource;
+        $this->resourceUri = $this->baseApiUrl . "stores/" . $this->storeHash . "/{$this->version}/" . $resource;
 
         return $this->resourceUri;
+    }
+
+    public function addHeader($key, $value)
+    {
+        $this->bigcommerce->addHeader($key, $value);
+
+        return $this;
+    }
+
+     public function removeHeader($header)
+    {
+        $this->bigcommerce->remove($header);
     }
 
     public function getStatus()
