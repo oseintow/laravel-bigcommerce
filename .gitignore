@@ -1,0 +1,11 @@
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+.env.testing
+/.idea
+.idea/*
+/.phpcomplete_extended
+
+tests/_output/*

@@ -1,0 +1,24 @@
+{
+    "name": "oseintow/laravel-shopify",
+    "description": "Laravel bigcommerce package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "michael osei ntow",
+            "email": "oseintow@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/support": "^5.3",
+        "bigcommerce/api": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oseintow\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
