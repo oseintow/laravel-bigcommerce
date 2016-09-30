@@ -161,7 +161,8 @@ class Bigcommerce
         }
     }
 
-    public function resourceUri($resource){
+    public function resourceUri($resource)
+    {
         $this->resourceUri = $this->baseApiUrl . "stores/" . $this->storeHash . "/{$this->version}/" . $resource;
 
         return $this->resourceUri;
