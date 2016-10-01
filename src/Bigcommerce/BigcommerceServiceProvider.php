@@ -35,9 +35,13 @@ class BigcommerceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['bigcommerce'] = $this->app->share(function($app)
-        {
-            return new Bigcommerce(Config::get('bigcommerce.default'));
+        // $this->app['bigcommerce'] = $this->app->share(function($app)
+        // {
+        //     return new Bigcommerce(Config::get('bigcommerce.default'));
+        // });
+
+        $this->app->singleton(\Oseintow\Bigcommerce\Facades\Bigcommerce::class, function ($app) {
+             return new Bigcommerce(Config::get('bigcommerce.default'));
         });
     }
 

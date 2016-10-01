@@ -57,17 +57,17 @@ class Bigcommerce
 
     private function basicAuth()
     {
-        BigcommerceClientResource::configure(array(
+        BigcommerceClientResource::configure([
             'store_url' => Config::get('bigcommerce.'.$this->connection.'.store_url'),
             'username'  => Config::get('bigcommerce.'.$this->connection.'.username'),
             'api_key'   => Config::get('bigcommerce.'.$this->connection.'.api_key')
-        ));
+        ]);
     }
 
     /*
      * Set store hash;
      */
-    public function setStoreHash(string $storeHash)
+    public function setStoreHash($storeHash)
     {
         $storeHash = explode("/", $storeHash);
         $this->storeHash = $storeHash[count($storeHash) - 1];
@@ -123,7 +123,6 @@ class Bigcommerce
     public function makeHttpVerbRequest($httpVerb, $resource, $filters = null)
     {
         try {
-
             $data = $this->bigcommerce->$httpVerb($this->resourceUri($resource), $filters);
 
             if ($this->bigcommerce->getHeader("X-Retry-After")) {
@@ -146,14 +145,14 @@ class Bigcommerce
     {
         try {
             if($this->connection == "oAuth"){
-                BigcommerceClientResource::configure(array(
+                BigcommerceClientResource::configure([
                     'client_id' => $this->clientId,
                     'auth_token' => $this->accessToken,
                     'store_hash' => $this->storeHash
-                ));
+                ]);
             }
 
-            $data = call_user_func_array([BigcommerceClientResource::class,$method], $args);
+            $data = call_user_func_array([BigcommerceClientResource::class, $method], $args);
 
             return collect($data);
         }catch(Exception $e){
@@ -175,7 +174,7 @@ class Bigcommerce
         return $this;
     }
 
-     public function removeHeader($header)
+    public function removeHeader($header)
     {
         $this->bigcommerce->remove($header);
     }
