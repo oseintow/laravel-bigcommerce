@@ -90,7 +90,8 @@ Bigcommerce::delete("resource uri");
 
 Let use our access token to get products from bigcommerce.
 
-**NB:** You can use this to access any resource on bigcommerce (be it Products, Shops, Orders, etc)
+**NB:** You can use this to access any resource on bigcommerce (be it Products, Shops, Orders, etc).
+And also you dont need store hash and access token when using basic auth.
 
 ```php5
 $storeHash = "ecswer";
