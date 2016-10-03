@@ -82,7 +82,7 @@ There are 2 ways to access resource from bigcommerce using this package.
 1. Using the http verbs(ie. this gives you more flexibility and also support api v3 and also returns laravel collection)
 2. Using Bigcommerce Collection (this does not support api v3 yet and laravel collection).
 
-##For Http verbs
+##Using Http verbs
 
 ```php5
 Bigcommerce::get("resource uri",["query string params"]);
