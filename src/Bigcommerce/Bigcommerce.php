@@ -23,9 +23,9 @@ class Bigcommerce
     protected $redirectUrl;
     protected $resourceUri;
 
-    public function __construct($connection)
+    public function __construct()
     {
-        $this->setConnection($connection);
+        $this->setConnection(Config::get('bigcommerce.default'));
     }
 
     private function setConnection($connection)

@@ -37,7 +37,7 @@ class BigcommerceServiceProvider extends ServiceProvider
     {
          $this->app['bigcommerce'] = $this->app->share(function($app)
          {
-             return new Bigcommerce(Config::get('bigcommerce.default'));
+             return new Bigcommerce();
          });
     }
 
