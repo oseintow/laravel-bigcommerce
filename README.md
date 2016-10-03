@@ -47,13 +47,6 @@ Set **API_KEY** , **USERNAME** AND **STORE URL**
 
 Set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
 
-##Usage
-
-There are 2 ways to access resource from bigcommerce using this package.
-
-1. Using the http verbs(ie. this gives you more flexibility and also support api v3 and also returns laravel collection)
-2. Using Bigcommerce Collection (this does not support api v3 and laravel collection).
-
 Let's retrieve access token
 
 ```php5
@@ -64,6 +57,13 @@ Route::get("process_oauth_result",function(\Illuminate\Http\Request $request)
     dd($response);
 });
 ```
+
+##Usage
+
+There are 2 ways to access resource from bigcommerce using this package.
+
+1. Using the http verbs(ie. this gives you more flexibility and also support api v3 and also returns laravel collection)
+2. Using Bigcommerce Collection (this does not support api v3 and laravel collection).
 
 By default the package support **API v3**
 
