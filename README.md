@@ -49,7 +49,10 @@ Set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
 
 ##Usage
 
-Will Fill Later.
+There are 2 ways to access resource from bigcommerce using this package.
+
+1. Using the http verbs(ie. this gives you more flexibility and also support api v3 and also returns laravel collection)
+2. Using Bigcommerce Collection (this does not support api v3 and laravel collection).
 
 Let's retrieve access token
 
@@ -75,11 +78,6 @@ or
 ```php5
 Bigcommerce::setApiVersion('v2');
 ```
-
-There are 2 ways to access resource from bigcommerce using this package.
-
-1. Using the http verbs(ie. this gives you more flexibility and also support api v3 and also returns laravel collection)
-2. Using Bigcommerce Collection (this does not support api v3 and laravel collection).
 
 ##Using Http verbs
 
