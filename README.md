@@ -1,6 +1,7 @@
 # Laravel Bigcommerce
 
 Laravel Bigcommerce is a simple package which helps to build robust integration into bigcommerce.
+This package support the Version 2 and 3 of the Bigcommerce Api.
 
 ##Installation
 
@@ -38,11 +39,11 @@ Laravel Bigcommerce requires connection configuration. You will need to publish 
 
 This will create a bigcommerce.php file in the config directory. You will need to set your **auth** keys
 
-#####BasicAuth
+####BasicAuth
 
 You will need to set **API_KEY** , **USERNAME** AND **STORE URL**
 
-#####OAUTH
+####OAUTH
 
 You will need to set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
 
@@ -61,7 +62,27 @@ Route::get("process_oauth_result",function(\Illuminate\Http\Request $request)
 });
 ```
 
+By default the package support **API v3**
+
+To set it to version 2 or 3 use
+
+```php5
+Bigcommerce::setApiVersion('v2');
+```
+
+or
+
+```php5
+Bigcommerce::setApiVersion('v2');
+```
+
 To access API resource use
+There are 2 ways to access resource from bigcommerce using this package.
+
+1. Using the http verbs(ie. this gives you more flexibility and also support api v3 and also returns laravel collection)
+2. Using Bigcommerce Collection (this does not support api v3 yet and laravel collection).
+
+##For Http verbs
 
 ```php5
 Bigcommerce::get("resource uri",["query string params"]);
@@ -138,6 +159,69 @@ To get response status code or status message
 ```php5
 Bigcommerce::getStatus(); // 200
 ```
+
+## Using Bigcommerce Collection
+
+####Testing Configuration
+
+Use code below To test if configuration is correct. Returns false if unsuccessful otherwise return DateTime Object.
+
+```php5
+$time = Bigcommerce::getTime();
+```
+
+###Accessing Resources
+```php5
+//  oauth
+$storeHash = "afw2w";
+$accessToken = "xxxxxxxxxxxxxxxxxxxxx";
+$products = Bigcommerce::setStoreHash($storeHash)->setAccessToken($accessToken)->getProducts();
+
+//Basic Auth
+$products = Bigcommerce::getProducts();
+```
+
+
+##Paging and Filtering
+
+All the default collection methods support paging, by passing the page number to the method as an integer:
+
+$products = Bigcommerce::getProducts(3);
+
+If you require more specific numbering and paging, you can explicitly specify a limit parameter:
+
+```php5
+$filter = array("page" => 3, "limit" => 30);
+
+$products = Bigcommerce::getProducts($filter);
+```
+
+To filter a collection, you can also pass parameters to filter by as key-value pairs:
+
+```php5
+$filter = array("is_featured" => true);
+
+$featured = Bigcommerce::getProducts($filter);
+```
+
+See the API documentation for each resource for a list of supported filter parameters.
+
+Updating existing resources (PUT)
+
+To update a single resource:
+
+```php5
+$product = Bigcommerce::getProduct(11);
+
+$product->name = "MacBook Air";
+$product->price = 99.95;
+$product->update();
+```
+
+For more info on the Bigcommerce Collection check [this](https://packagist.org/packages/bigcommerce/api)
+
+
+
 
 
 
