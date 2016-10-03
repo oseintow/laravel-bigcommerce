@@ -152,6 +152,9 @@ class Bigcommerce
                 ]);
             }
 
+            if($this->version = "v3")
+                throw new BigcommerceApiException("Bigcommerce resource does not support api version 3", 403);
+
             $data = call_user_func_array([BigcommerceClientResource::class, $method], $args);
 
             return collect($data);
