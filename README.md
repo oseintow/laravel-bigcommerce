@@ -41,11 +41,11 @@ This will create a bigcommerce.php file in the config directory. You will need t
 
 ####BasicAuth
 
-You will need to set **API_KEY** , **USERNAME** AND **STORE URL**
+Set **API_KEY** , **USERNAME** AND **STORE URL**
 
 ####OAUTH
 
-You will need to set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
+Set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
 
 ##Usage
 
