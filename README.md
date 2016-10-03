@@ -76,7 +76,7 @@ Bigcommerce::setApiVersion('v2');
 or
 
 ```php5
-Bigcommerce::setApiVersion('v2');
+Bigcommerce::setApiVersion('v3');
 ```
 
 ##Using Http verbs
