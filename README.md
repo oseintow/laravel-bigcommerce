@@ -39,13 +39,13 @@ Laravel Bigcommerce requires connection configuration. You will need to publish 
 
 This will create a bigcommerce.php file in the config directory. You will need to set your **auth** keys
 
-####BasicAuth
-
-Set **API_KEY** , **USERNAME** AND **STORE URL**
-
 ####OAUTH
 
 Set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
+
+####BasicAuth
+
+Set **API_KEY** , **USERNAME** AND **STORE URL**
 
 Let's retrieve access token
 
