@@ -4,7 +4,7 @@ namespace Oseintow\Bigcommerce;
 
 use Config;
 use Bigcommerce\Api\Connection as BigcommerceClient;
-use Bigcommerce\Api\Client as BigcommerceClientResource;
+use Bigcommerce\Api\Client as BigcommerceCollectionResource;
 use Oseintow\Bigcommerce\Exceptions\BigcommerceApiException;
 
 
@@ -57,7 +57,7 @@ class Bigcommerce
 
     private function basicAuth()
     {
-        BigcommerceClientResource::configure([
+        BigcommerceCollectionResource::configure([
             'store_url' => Config::get('bigcommerce.'.$this->connection.'.store_url'),
             'username'  => Config::get('bigcommerce.'.$this->connection.'.username'),
             'api_key'   => Config::get('bigcommerce.'.$this->connection.'.api_key')
@@ -145,7 +145,7 @@ class Bigcommerce
     {
         try {
             if($this->connection == "oAuth"){
-                BigcommerceClientResource::configure([
+                BigcommerceCollectionResource::configure([
                     'client_id'  => $this->clientId,
                     'auth_token' => $this->accessToken,
                     'store_hash' => $this->storeHash
@@ -155,7 +155,7 @@ class Bigcommerce
             if($this->version == "v3")
                 throw new BigcommerceApiException("Bigcommerce collection does not support api version 3", 403);
 
-            $data = call_user_func_array([BigcommerceClientResource::class, $method], $args);
+            $data = call_user_func_array([BigcommerceCollectionResource::class, $method], $args);
 
             return $data;
         }catch(Exception $e){
