@@ -117,7 +117,7 @@ class Bigcommerce
             return $this->makeHttpVerbRequest($method, $args[0], $args[1] ?? null);
         }
 
-        return $this->makeBigcomerceResourceRequest($method, $args);
+        return $this->makeBigcomerceCollectionRequest($method, $args);
     }
 
     public function makeHttpVerbRequest($httpVerb, $resource, $filters = null)
@@ -141,19 +141,19 @@ class Bigcommerce
         }
     }
 
-    public function makeBigcomerceResourceRequest($method, $args)
+    public function makeBigcomerceCollectionRequest($method, $args)
     {
         try {
             if($this->connection == "oAuth"){
                 BigcommerceClientResource::configure([
-                    'client_id' => $this->clientId,
+                    'client_id'  => $this->clientId,
                     'auth_token' => $this->accessToken,
                     'store_hash' => $this->storeHash
                 ]);
             }
 
             if($this->version == "v3")
-                throw new BigcommerceApiException("Bigcommerce resource does not support api version 3", 403);
+                throw new BigcommerceApiException("Bigcommerce collection does not support api version 3", 403);
 
             $data = call_user_func_array([BigcommerceClientResource::class, $method], $args);
 
