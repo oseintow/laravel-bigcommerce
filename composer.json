@@ -20,5 +20,15 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+     "extra": {
+         "laravel": {
+             "providers": [
+                 "Oseintow\\Bigcommerce\\BigcommerceServiceProvider"
+             ],
+             "aliases": {
+                 "Bigcommerce": "Oseintow\\Bigcommerce\\Facades\\Bigcommerce"
+             }
+         }
     }
 }
