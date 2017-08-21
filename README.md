@@ -3,7 +3,7 @@
 Laravel Bigcommerce is a simple package which helps to build robust integration into bigcommerce.
 This package support the Version 2 and 3 of the Bigcommerce Api.
 
-##Installation
+## Installation
 
 Add package to composer.json
 
@@ -31,7 +31,7 @@ Setup alias for the Facade
 ],
 ```
 
-##Configuration
+## Configuration
 
 Laravel Bigcommerce requires connection configuration. You will need to publish vendor assets
 
@@ -39,11 +39,11 @@ Laravel Bigcommerce requires connection configuration. You will need to publish 
 
 This will create a bigcommerce.php file in the config directory. You will need to set your **auth** keys
 
-####OAUTH
+#### OAUTH
 
 Set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
 
-####BasicAuth
+#### BasicAuth
 
 Set **API_KEY** , **USERNAME** AND **STORE URL**
 
@@ -58,7 +58,7 @@ Route::get("process_oauth_result",function(\Illuminate\Http\Request $request)
 });
 ```
 
-##Usage
+## Usage
 
 There are 2 ways to access resource from bigcommerce using this package.
 
@@ -79,7 +79,7 @@ or
 Bigcommerce::setApiVersion('v3');
 ```
 
-##Using Http verbs
+## Using Http verbs
 
 ```php5
 Bigcommerce::get("resource uri",["query string params"]);
@@ -107,7 +107,7 @@ $bigcommerce = Bigcommerce::setStoreHash($storeHash)->setAccessToken($accessToke
 $products = $bigcommerce->get("admin/products.json", ["limit"=>20, "page" => 1]);
 ```
 
-##Controller Example
+## Controller Example
 
 If you prefer to use dependency injection over facades like me, then you can inject the Class:
 
@@ -140,7 +140,7 @@ class Foo
 }
 ```
 
-##Miscellaneous
+## Miscellaneous
 
 To get Response headers
 
@@ -160,7 +160,7 @@ Bigcommerce::getStatus(); // 200
 
 ## Using Bigcommerce Collection
 
-####Testing Configuration
+#### Testing Configuration
 
 Use code below To test if configuration is correct. Returns false if unsuccessful otherwise return DateTime Object.
 
@@ -168,7 +168,7 @@ Use code below To test if configuration is correct. Returns false if unsuccessfu
 $time = Bigcommerce::getTime();
 ```
 
-###Accessing Resources
+### Accessing Resources
 ```php5
 //  oauth
 $storeHash = "afw2w";
@@ -180,7 +180,7 @@ $products = Bigcommerce::getProducts();
 ```
 
 
-##Paging and Filtering
+## Paging and Filtering
 
 All the default collection methods support paging, by passing the page number to the method as an integer:
 
