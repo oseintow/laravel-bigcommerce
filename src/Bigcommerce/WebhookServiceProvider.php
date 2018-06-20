@@ -2,10 +2,12 @@
 
 namespace VerveCommerce\Bigcommerce;
 
-use Config;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Url;
 use Illuminate\Support\ServiceProvider;
 
-class BigcommerceServiceProvider extends ServiceProvider
+class WebhookServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -21,11 +23,13 @@ class BigcommerceServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/../config/bigcommerce.php' => config_path('bigcommerce.php'),
-        ]);
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../routes/bigcommerce-webhooks.php' => base_path('routes/bigcommerce-webhooks.php'),
+            ]);
+        }
 
-        $this->app->alias('Bigcommerce', 'VerveCommerce\Bigcommerce\Facades\Bigcommerce');
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
 
     /**
@@ -35,8 +39,6 @@ class BigcommerceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('bigcommerce', function ($app) {
-            return new Bigcommerce();
-        });
+        //
     }
 }
