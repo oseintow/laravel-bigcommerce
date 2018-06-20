@@ -24,10 +24,11 @@
      "extra": {
          "laravel": {
              "providers": [
-                 "Oseintow\\Bigcommerce\\BigcommerceServiceProvider"
+                 "Oseintow\\Bigcommerce\\BigcommerceServiceProvider",
+                 "Oseintow\\Bigcommerce\\WebhookServiceProvider"
              ],
              "aliases": {
-                 "Bigcommerce": "Oseintow\\Bigcommerce\\Facades\\Bigcommerce"
+                 "Bigcommerce": "Oseintow\\Bigcommerce\\Facades\\BigCommerce"
              }
          }
     }
