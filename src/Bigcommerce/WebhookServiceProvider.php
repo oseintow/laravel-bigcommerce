@@ -1,6 +1,6 @@
 <?php
 
-namespace Oseintow\Bigcommerce;
+namespace VerveCommerce\Bigcommerce;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;

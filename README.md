@@ -1,62 +1,48 @@
-# Laravel Bigcommerce
+# Laravel BigCommerce Webhook Quickstart
 
-Laravel Bigcommerce is a simple package which helps to build robust integration into bigcommerce.
-This package support the Version 2 and 3 of the Bigcommerce Api.
+This package is a kickstart-style package for Laravel which makes rapidly building and locally
+developing Webhook-focused integrations.
+
+## Prerequisites
+
+This package assumes you have [`ngrok`][0] installed. You only a free account in order
+to take advantage of this package. The `ngrok` command line application must be installed and
+must be in your path.
 
 ## Installation
 
-Add package to composer.json
+Require the package in your project:
 
-    composer require oseintow/laravel-bigcommerce
-
-Add the service provider to config/app.php in the providers array.
-
-```php5
-<?php
-
-'providers' => [
-    ...
-    Oseintow\Bigcommerce\BigcommerceServiceProvider::class,
-],
-```
-
-Setup alias for the Facade
-
-```php5
-<?php
-
-'aliases' => [
-    ...
-    'Bigcommerce' => Oseintow\Bigcommerce\Facades\Bigcommerce::class,
-],
-```
+    composer require vervecommerce/laravel-bigcommerce
 
 ## Configuration
 
-Laravel Bigcommerce requires connection configuration. You will need to publish vendor assets
+Before getting started, you'll need to configure the integration. Here is the configuration stub for your `.env` file:
+
+    BIGCOMMERCE_CLIENT_ID=a6t18jv7evll0s8m77jx0qitc8q0ecr
+    BIGCOMMERCE_CLIENT_SECRET=5ay6wbemr44a8bngnp0ut2m5xf8qewi
+    BIGCOMMERCE_STORE_HASH=mj8zesutwp
+    BIGCOMMERCE_ACCESS_TOKEN=607h4d4fxk6nupvjycyjodr5j1sd55i
+    BIGCOMMERCE_API_VERSION=v2
+    BIGCOMMERCE_NGROK_URL=
+    BIGCOMMERCE_WEBHOOK_SECRET=
+
+You'll also want to publish the configuration file:
 
     php artisan vendor:publish
 
-This will create a bigcommerce.php file in the config directory. You will need to set your **auth** keys
+And then you'll want to generate a secret key:
 
-#### OAUTH
+    php artisan bigcommerce:
+
+This will create a `config/bigcommerce.php` file in the config directory. If you need more information about the config,
+there is plenty of documentation in the config file itself.
+
+## oAuth
+
+This module only supports oAuth since it's the only method webhooks are supported.
 
 Set **CLIENT ID** , **CLIENT SECRET** AND **REDIRECT URL**
-
-#### BasicAuth
-
-Set **API_KEY** , **USERNAME** AND **STORE URL**
-
-Let's retrieve access token
-
-```php5
-Route::get("process_oauth_result",function(\Illuminate\Http\Request $request)
-{
-    $response = Bigcommerce::getAccessToken($request->code, $request->scope, $request->context));
-
-    dd($response);
-});
-```
 
 ## Usage
 
@@ -113,7 +99,7 @@ If you prefer to use dependency injection over facades like me, then you can inj
 
 ```php5
 use Illuminate\Http\Request;
-use Oseintow\Bigcommerce\Bigcommerce;
+use VerveCommerce\Bigcommerce\Bigcommerce;
 
 class Foo
 {
@@ -218,19 +204,5 @@ $product->update();
 
 For more info on the Bigcommerce Collection check [this](https://packagist.org/packages/bigcommerce/api)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[0]: https://ngrok.com
 

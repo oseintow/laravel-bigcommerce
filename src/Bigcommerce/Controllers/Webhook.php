@@ -1,6 +1,6 @@
 <?php
 
-namespace Oseintow\Bigcommerce\Controllers;
+namespace VerveCommerce\Bigcommerce\Controllers;
 
 use Illuminate\Support\Facades\Log;
 
@@ -12,11 +12,11 @@ class Webhook
             return response('Invalid secret', 406);
         }
 
-        $msg = sprintf('Got webhook *%s* with data ```%s```',
-            request('scope'),
-            print_r(request('data'), TRUE));
-
-        Log::stack(['slack'])->info($msg);
+//        $msg = sprintf('Got webhook *%s* with data ```%s```',
+//            request('scope'),
+//            print_r(request('data'), TRUE));
+//
+//        Log::stack(['slack'])->info($msg);
 
         // Return a 200.
         return response('OK');

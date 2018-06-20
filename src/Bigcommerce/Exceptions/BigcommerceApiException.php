@@ -1,12 +1,12 @@
 <?php
 /**
- * Created by oseintow.
- * User: oseintow
+ * Created by VerveCommerce.
+ * User: VerveCommerce
  * Date: 9/14/16
  * Time: 7:28 PM
  */
 
-namespace Oseintow\Bigcommerce\Exceptions;
+namespace VerveCommerce\Bigcommerce\Exceptions;
 
 use Exception;
 

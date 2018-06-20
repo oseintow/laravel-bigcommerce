@@ -1,6 +1,6 @@
 <?php
 
-namespace Oseintow\Bigcommerce\Facades;
+namespace VerveCommerce\Bigcommerce\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

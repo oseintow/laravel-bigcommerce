@@ -1,9 +1,9 @@
 <?php
 
-namespace Oseintow\Bigcommerce;
+namespace VerveCommerce\Bigcommerce;
 
-use Oseintow\Bigcommerce\Exceptions\BigcommerceApiException;
-use \Oseintow\Bigcommerce\Facades\Bigcommerce;
+use VerveCommerce\Bigcommerce\Exceptions\BigcommerceApiException;
+use \VerveCommerce\Bigcommerce\Facades\Bigcommerce;
 
 class Webhooks
 {

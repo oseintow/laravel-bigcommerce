@@ -12,4 +12,4 @@
     */
 
 Route::post('bigcommerce/webhook',
-    '\Oseintow\Bigcommerce\Controllers\Webhook@process')->name('bigcommerce.webhook');
+    '\VerveCommerce\Bigcommerce\Controllers\Webhook@process')->name('bigcommerce.webhook');

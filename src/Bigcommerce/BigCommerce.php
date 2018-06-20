@@ -1,6 +1,6 @@
 <?php
 
-namespace Oseintow\Bigcommerce;
+namespace VerveCommerce\Bigcommerce;
 
 use Bigcommerce\Api\Connection as ApiConnection;
 use Bigcommerce\Api\Client as ApiClient;
